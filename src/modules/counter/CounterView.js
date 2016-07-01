@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Text,
-  View
+  View,
+  NativeModules
 } from 'react-native';
 
 const CounterView = React.createClass({
@@ -30,7 +31,9 @@ const CounterView = React.createClass({
   bored() {
     this.props.dispatch(NavigationState.pushRoute({key: 'Color'}));
   },
-
+  componentDidMount() {
+    NativeModules.NotificationModule.sendNotification();
+  },
   renderUserInfo() {
     if (!this.props.userName) {
       return null;
