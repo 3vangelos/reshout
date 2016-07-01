@@ -40,7 +40,7 @@ export async function requestRandomNumber() {
 export default function CounterStateReducer(state = initialState, action = {}) {
   switch (action.type) {
     case INCREMENT:
-      return state.update('value', value => value + 1);
+      return state.update('value', value => value + 2);
 
     case RESET:
       return initialState;
