@@ -38,6 +38,10 @@ npm-debug.log
 # Secrets
 env.js
 
+# Files automatically changed
+ios/Podfile.lock
+*.pbxproj
+
 # CocoaPods
 ios/Pods/
 
