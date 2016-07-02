@@ -1,27 +1,97 @@
 {
   "project_info": {
-    "project_number": "1093696788820",
-    "firebase_url": "https://reshout-3a68f.firebaseio.com",
-    "project_id": "reshout-3a68f",
-    "storage_bucket": "reshout-3a68f.appspot.com"
+    "project_number": "452928843084",
+    "firebase_url": "https://forces-assemble.firebaseio.com",
+    "project_id": "forces-assemble",
+    "storage_bucket": "forces-assemble.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1093696788820:android:8725cbebdc583b42",
+        "mobilesdk_app_id": "1:452928843084:android:066aa63b90f1cfd9",
+        "android_client_info": {
+          "package_name": "com.github.oasalonen.forcesassemble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452928843084-pvqktsvfnlahknrv28g1b645coth49b0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.oasalonen.forcesassemble",
+            "certificate_hash": "EB631C6E03B5D2DD7726C4E2C195B192B1CF061E"
+          }
+        },
+        {
+          "client_id": "452928843084-t05klobc91irmicohmd1v2mhbq6p9nbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Ww7TN8WoXAIoTehK8VEQVSg1-pyOaf4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452928843084:android:a79b1ef8508032c2",
+        "android_client_info": {
+          "package_name": "com.kahvi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452928843084-t05klobc91irmicohmd1v2mhbq6p9nbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Ww7TN8WoXAIoTehK8VEQVSg1-pyOaf4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452928843084:android:8725cbebdc583b42",
         "android_client_info": {
           "package_name": "com.reshout"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1093696788820-j8l530bupa6878ejsng76kdo9do8i0bp.apps.googleusercontent.com",
+          "client_id": "452928843084-t05klobc91irmicohmd1v2mhbq6p9nbc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD7-RI3FIH-rhuIX7EXUgR3lkvbSGftexY"
+          "current_key": "AIzaSyD9Ww7TN8WoXAIoTehK8VEQVSg1-pyOaf4"
         }
       ],
       "services": {

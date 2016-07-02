@@ -138,10 +138,10 @@
     <orderEntry type="library" exported="" name="play-services-tasks-9.2.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.4.1" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-impl-9.2.0" level="project" />
-    <orderEntry type="library" exported="" name="jackson-databind-2.4.1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-ws-3.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jackson-databind-2.4.1" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-3.3.1" level="project" />
     <orderEntry type="library" exported="" name="react-native-0.28.0" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-3.2.0" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-okhttp3-0.10.0" level="project" />
     <orderEntry type="library" exported="" name="imagepipeline-0.10.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-9.2.0" level="project" />
