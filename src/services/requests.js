@@ -7,14 +7,18 @@ export async function sendFirebaseMessage(channelName) {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
       body: JSON.stringify({
-          "title": "Hello",
-          "body": "World!",
+
+        "notification" : {
+        "body" : "Pure awesomeness!",
+        "title" : "Reshout"
+        },
           "data": {
-          "custom-param1": 123,
-          "something-else": "foo"
+          "autor": "Tomek",
+          "body" : "Pure awesomeness!",
+          "title" : "Reshout"
           }
           })})
-          return response.status 
+          return response.status
   } catch(error) {  // Handle error
     console.error(error);
   }

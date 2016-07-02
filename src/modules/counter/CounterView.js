@@ -32,7 +32,7 @@ const CounterView = React.createClass({
     this.props.dispatch(NavigationState.pushRoute({key: 'Color'}));
   },
   componentDidMount() {
-    NativeModules.NotificationModule.sendNotification();
+  //  NativeModules.NotificationModule.sendNotification();
 //    subscribeToChannel("tomek_is_awesome_channel");
   },
   renderUserInfo() {
