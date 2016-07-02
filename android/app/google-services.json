@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1093696788820",
+    "firebase_url": "https://reshout-3a68f.firebaseio.com",
+    "project_id": "reshout-3a68f",
+    "storage_bucket": "reshout-3a68f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093696788820:android:8725cbebdc583b42",
+        "android_client_info": {
+          "package_name": "com.reshout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093696788820-j8l530bupa6878ejsng76kdo9do8i0bp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7-RI3FIH-rhuIX7EXUgR3lkvbSGftexY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
