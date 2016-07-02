@@ -1,53 +1,52 @@
-import * as MessageListState from './MessageListState';
-import React, {PropTypes} from 'react';
+// import * as MessageListState from './MessageListState';
+// import React, {PropTypes} from 'react';
+import React from 'react';
 import {
   StyleSheet,
-  Image,
   TextInput,
-  Text,
   View
 } from 'react-native';
 
 const MessageListView = React.createClass({
   propTypes: {
-    counter: PropTypes.number.isRequired,
-    userName: PropTypes.string,
-    userProfilePhoto: PropTypes.string,
-    loading: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    onNavigate: PropTypes.func.isRequired
+    // counter: PropTypes.number.isRequired,
+    // userName: PropTypes.string,
+    // userProfilePhoto: PropTypes.string,
+    // loading: PropTypes.bool.isRequired,
+    // dispatch: PropTypes.func.isRequired,
+    // onNavigate: PropTypes.func.isRequired
   },
-  increment() {
-    this.props.dispatch(MessageListState.increment());
-  },
-  reset() {
-    this.props.dispatch(MessageListState.reset());
-  },
-  random() {
-    this.props.dispatch(MessageListState.random());
-  },
+  // increment() {
+  //   this.props.dispatch(MessageListState.increment());
+  // },
+  // reset() {
+  //   this.props.dispatch(MessageListState.reset());
+  // },
+  // random() {
+  //   this.props.dispatch(MessageListState.random());
+  // },
 
-  renderUserInfo() {
-    if (!this.props.userName) {
-      return null;
-    }
+  // renderUserInfo() {
+  //   if (!this.props.userName) {
+  //     return null;
+  //   }
 
-    return (
-      <View style={styles.userContainer}>
-        <Image
-          style={styles.userProfilePhoto}
-          source={{
-            uri: this.props.userProfilePhoto,
-            width: 80,
-            height: 80
-          }}
-        />
-        <Text style={styles.linkButton}>
-          Welcome, {this.props.userName}!
-        </Text>
-      </View>
-    );
-  },
+  //   return (
+  //     <View style={styles.userContainer}>
+  //       <Image
+  //         style={styles.userProfilePhoto}
+  //         source={{
+  //           uri: this.props.userProfilePhoto,
+  //           width: 80,
+  //           height: 80
+  //         }}
+  //       />
+  //       <Text style={styles.linkButton}>
+  //         Welcome, {this.props.userName}!
+  //       </Text>
+  //     </View>
+  //   );
+  // },
   render() {
 
     return (
@@ -74,12 +73,12 @@ const MessageListView = React.createClass({
   }
 });
 
-const circle = {
-  borderWidth: 0,
-  borderRadius: 40,
-  width: 80,
-  height: 80
-};
+// const circle = {
+//   borderWidth: 0,
+//   borderRadius: 40,
+//   width: 80,
+//   height: 80
+// };
 
 const smallCircle = {
   borderWidth: 0,
@@ -118,17 +117,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 5
   },
-  counterButton: {
-    ...circle,
-    backgroundColor: 'green',
-    justifyContent: 'center',
-    margin: 20
-  },
-  counter: {
-    color: 'white',
-    fontSize: 20,
-    textAlign: 'center'
-  },
+  // counterButton: {
+  //   ...circle,
+  //   backgroundColor: 'green',
+  //   justifyContent: 'center',
+  //   margin: 20
+  // },
+  // counter: {
+  //   color: 'white',
+  //   fontSize: 20,
+  //   textAlign: 'center'
+  // },
   welcome: {
     textAlign: 'center',
     color: 'black',

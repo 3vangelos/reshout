@@ -5,9 +5,9 @@ import {
   StyleSheet
 } from 'react-native';
 
-import * as NavigationState from '../../modules/navigation/NavigationState';
+// import * as NavigationState from '../../modules/navigation/NavigationState';
 
-const color = () => Math.floor(255 * Math.random());
+// const color = () => Math.floor(255 * Math.random());
 
 /**
  * Sample view to demonstrate navigation patterns.
@@ -19,16 +19,16 @@ const ColorView = React.createClass({
     dispatch: PropTypes.func.isRequired
   },
 
-  getInitialState() {
-    return {
-      background: `rgba(${color()},${color()},${color()}, 1)`
-    };
-  },
+  // getInitialState() {
+  //   return {
+  //     background: `rgba(${color()},${color()},${color()}, 1)`
+  //   };
+  // },
 
-  onNextPress() {
-    const index = this.props.index;
-    this.props.dispatch(NavigationState.pushRoute({key: `Color_${index + 1}`}));
-  },
+  // onNextPress() {
+  //   const index = this.props.index;
+  //   this.props.dispatch(NavigationState.pushRoute({key: `Color_${index + 1}`}));
+  // },
 
   render() {
 

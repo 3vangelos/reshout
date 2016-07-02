@@ -131,7 +131,7 @@ The View usually has some presentational components and styling, but usually the
 
 A View should take all inputs as `props`, and should very, very rarely, if ever, be stateful. Instead, the state should be managed in Redux, and injected to the component props by the container.
 
-To continue the Counter example, a view might look something like this:
+To continue the MessageList example, a view might look something like this:
 
 ```js
 import React, {PropTypes, StyleSheet, Text, View} from 'react-native';
@@ -186,7 +186,7 @@ We think using `mapStateToProps` is a good practice, but avoid using `mapActions
 
 Every time the app state changes, the Container is automatically called with the latest state. If the props returned by the container differ from the previous props, the connected View is re-rendered. If the props are identical, the view is not re-rendered. For this reason it's a good idea to define your props as ImmutableJS data structures or JavaScript primitives, because if you `toJS()` your immutable `Map`s and `Lists` to objects and arrays in the Container, the results of each pass are not referentially equal, and we lose the benefit of this performance optimisation.
 
-Using the Counter example, the container would be very simple:
+Using the MessageList example, the container would be very simple:
 
 ```js
 import {connect} from 'react-redux';

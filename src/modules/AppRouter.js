@@ -11,7 +11,7 @@ export default function AppRouter(props) {
   const onNavigate = props.onNavigate;
   const key = props.scene.route.key;
 
-  if (key === 'Counter') {
+  if (key === 'MessageList') {
     return <MessageListViewContainer onNavigate={onNavigate} />;
   }
 

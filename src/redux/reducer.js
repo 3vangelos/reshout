@@ -8,7 +8,7 @@ const reducers = {
   // // Authentication/login state
   // auth: AuthStateReducer,
 
-  // Counter sample app state. This can be removed in a live application
+  // MessageList sample app state. This can be removed in a live application
   messagelist: MessageListStateReducer,
 
   // @NOTE: By convention, the navigation state must live in a subtree called
