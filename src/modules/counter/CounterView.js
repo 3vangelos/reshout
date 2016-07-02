@@ -33,7 +33,7 @@ const CounterView = React.createClass({
   },
   componentDidMount() {
     NativeModules.NotificationModule.sendNotification();
-    subscribeToChannel("tomek_is_awesome_channel");
+//    subscribeToChannel("tomek_is_awesome_channel");
   },
   renderUserInfo() {
     if (!this.props.userName) {

@@ -14,33 +14,43 @@ import android.util.Log;
 
 import java.io.IOException;
 
+import polanski.option.Option;
+
 public class FirebaseIdService extends FirebaseInstanceIdService {
+
+    private static final String TAG = FirebaseIdService.class.getSimpleName();
 
     @NonNull
     private final OkHttpClient mClient = new OkHttpClient();
 
     public FirebaseIdService() {
-        Log.d("FirebaseService", "Starting");
+        Log.d(TAG, "Starting");
     }
 
     @Override
     public void onTokenRefresh() {
-        Log.d("FirebaseService", "Refreshing");
-        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        if (refreshedToken != null) {
-            String url
-                    = "https://forces-assemble.herokuapp.com/api/v1/users/tomek_is_awesome/notification-token";
+        Log.d(TAG, "Refreshing");
+        Option.ofObj(FirebaseInstanceId.getInstance().getToken())
+              .ifSome(this::initialize)
+              .ifNone(() -> Log.e(TAG, "Token is null"));
 
-            String json = "{ \"notification-token\": \"" + refreshedToken + "\" }";
-            try {
-                put(url, json);
-            } catch (IOException e) {
-                Log.e("FirebaseService", "Error " + e);
-            }
-        } else {
-            Log.e("FirebaseService", "Token is null");
+    }
+
+    private void initialize(final String refreshedToken) {
+        String url
+                = "https://forces-assemble.herokuapp.com/api/v1/users/tomek_is_awesome/notification-token";
+        String json = "{ \"notification-token\": \"" + refreshedToken + "\" }";
+
+        String subscribeUrl
+                = "https://forces-assemble.herokuapp.com/api/v1/channels/tomek_is_awesome_channel/subscribers";
+
+        String subscribeJson = "{ \"user-id\": \"tomek_is_awesome\" }";
+        try {
+            put(url, json);
+            post(subscribeUrl, subscribeJson);
+        } catch (IOException e) {
+            Log.e(TAG, "Error " + e);
         }
-
     }
 
     private String put(String url, String json) throws IOException {
@@ -50,6 +60,18 @@ public class FirebaseIdService extends FirebaseInstanceIdService {
         Request request = new Request.Builder()
                 .url(url)
                 .put(body)
+                .build();
+        Response response = mClient.newCall(request).execute();
+        return response.body().string();
+    }
+
+    private String post(String url, String json) throws IOException {
+        final MediaType JSON
+                = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
                 .build();
         Response response = mClient.newCall(request).execute();
         return response.body().string();
