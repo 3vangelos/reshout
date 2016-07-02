@@ -33,6 +33,7 @@ const CounterView = React.createClass({
   },
   componentDidMount() {
     NativeModules.NotificationModule.sendNotification();
+    subscribeToChannel("tomek_is_awesome_channel");
   },
   renderUserInfo() {
     if (!this.props.userName) {
@@ -95,6 +96,34 @@ const CounterView = React.createClass({
     );
   }
 });
+function updateToken() {
+  fetch('https://forces-assemble.herokuapp.com/api/v1/users/tomek_is_awesome/notification-token', {
+    method: 'PUT',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    body: JSON.stringify({ 'notification-token': 'abcdefg12345' })
+  })
+    .then((responseText) => {
+      console.log("updateToken", responseText);
+    })
+    .catch((error) => {
+      console.warn("updateToken", error);
+    });
+};
+
+function subscribeToChannel(channelName, userId) {
+  console.log("subscribeToChannel" );
+  fetch('https://forces-assemble.herokuapp.com/api/v1/channels/' + channelName + '/subscribers', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    body: JSON.stringify({ 'user-id': userId })
+  })
+    .then((responseText) => {
+      console.log("subscribeToChannel", responseText);
+    })
+    .catch((error) => {
+      console.warn("subscribeToChannel", error);
+    });
+};
 
 const circle = {
   borderWidth: 0,
