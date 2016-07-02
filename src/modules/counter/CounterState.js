@@ -1,6 +1,7 @@
 import {Map} from 'immutable';
 import {loop, Effects} from 'redux-loop';
 import {generateRandomNumber} from '../../services/randomNumberService';
+import {sendFirebaseMessage} from '../../services/requests';
 
 // Initial state
 const initialState = Map({
@@ -36,6 +37,13 @@ export async function requestRandomNumber() {
   };
 }
 
+export async function sendMessage() {
+  return {
+    type: RANDOM_RESPONSE,
+    payload: await sendFirebaseMessage('tomek_is_awesome_channel')
+  };
+}
+
 // Reducer
 export default function CounterStateReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -48,7 +56,7 @@ export default function CounterStateReducer(state = initialState, action = {}) {
     case RANDOM_REQUEST:
       return loop(
         state.set('loading', true),
-        Effects.promise(requestRandomNumber)
+        Effects.promise(sendMessage)
       );
 
     case RANDOM_RESPONSE:
