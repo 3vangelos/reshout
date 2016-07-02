@@ -1,15 +1,14 @@
-import * as CounterState from './CounterState';
-import * as NavigationState from '../../modules/navigation/NavigationState';
+import * as MessageListState from './MessageListState';
 import React, {PropTypes} from 'react';
 import {
   StyleSheet,
-  TouchableOpacity,
   Image,
+  TextInput,
   Text,
   View
 } from 'react-native';
 
-const CounterView = React.createClass({
+const MessageListView = React.createClass({
   propTypes: {
     counter: PropTypes.number.isRequired,
     userName: PropTypes.string,
@@ -19,16 +18,13 @@ const CounterView = React.createClass({
     onNavigate: PropTypes.func.isRequired
   },
   increment() {
-    this.props.dispatch(CounterState.increment());
+    this.props.dispatch(MessageListState.increment());
   },
   reset() {
-    this.props.dispatch(CounterState.reset());
+    this.props.dispatch(MessageListState.reset());
   },
   random() {
-    this.props.dispatch(CounterState.random());
-  },
-  bored() {
-    this.props.dispatch(NavigationState.pushRoute({key: 'Color'}));
+    this.props.dispatch(MessageListState.random());
   },
 
   renderUserInfo() {
@@ -53,41 +49,26 @@ const CounterView = React.createClass({
     );
   },
   render() {
-    const loadingStyle = this.props.loading
-      ? {backgroundColor: '#eee'}
-      : null;
 
     return (
       <View style={styles.container}>
 
+        <View style={styles.row}>
+          <View style={styles.userProfilePhoto}/>
+          <TextInput
+            placeholder='Message'
+            style={{
+              height: 40,
+              width: 80,
+              borderColor: 'gray',
+              borderWidth: 1,
+              backgroundColor: 'white',
+              margin: 5
+            }}
+          />
+        </View>
+
         {this.renderUserInfo()}
-
-        <TouchableOpacity
-          onPress={this.increment}
-          style={[styles.counterButton, loadingStyle]}>
-          <Text style={styles.counter}>
-            {this.props.counter}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.reset}>
-          <Text style={styles.linkButton}>
-            Reset
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.random}>
-          <Text style={styles.linkButton}>
-            Random
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.bored} accessible={true}>
-          <Text style={styles.linkButton}>
-            {'I\'m bored!'}
-          </Text>
-        </TouchableOpacity>
-
       </View>
     );
   }
@@ -100,25 +81,46 @@ const circle = {
   height: 80
 };
 
+const smallCircle = {
+  borderWidth: 0,
+  borderRadius: 20,
+  width: 40,
+  height: 40
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 64,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     backgroundColor: 'white'
   },
+  row: {
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    backgroundColor: 'blue'
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'red'
+  },
   userContainer: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   },
   userProfilePhoto: {
-    ...circle,
-    alignSelf: 'center'
+    ...smallCircle,
+    backgroundColor: 'yellow',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    margin: 5
   },
   counterButton: {
     ...circle,
     backgroundColor: 'green',
-    alignItems: 'center',
     justifyContent: 'center',
     margin: 20
   },
@@ -141,4 +143,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CounterView;
+export default MessageListView;

@@ -11,7 +11,6 @@ import DeveloperMenu from '../components/DeveloperMenu';
 const AppView = React.createClass({
   propTypes: {
     isReady: PropTypes.bool.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired
   },
   componentDidMount() {

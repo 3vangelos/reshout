@@ -5,39 +5,27 @@ import sinon from 'sinon';
 import {describe, it, beforeEach, afterEach} from 'mocha';
 import {expect} from 'chai';
 import {initialState, dispatch} from '../../../../test/state';
-import * as CounterStateActions from '../CounterState';
+import * as MessageListStateActions from '../MessageListState';
 
-describe('CounterState', () => {
+describe('MessageListState', () => {
 
   // Example of how to test multiple dispatches in series
   describe('increment', () => {
     const getValue = state => state.getIn(['counter', 'value']);
 
     it('should increment the value property by one', () => {
-      const [secondState] = dispatch(initialState, CounterStateActions.increment());
+      const [secondState] = dispatch(initialState, MessageListStateActions.increment());
       expect(getValue(secondState)).to.equal(getValue(initialState) + 1);
 
-      const [thirdState] = dispatch(secondState, CounterStateActions.increment());
+      const [thirdState] = dispatch(secondState, MessageListStateActions.increment());
       expect(getValue(thirdState)).to.equal(getValue(secondState) + 1);
-    });
-  });
-
-  describe('reset', () => {
-    it('should reset the counter state to initial value', () => {
-      // create an incremented state to test against
-      const [modifiedState] = dispatch(initialState, CounterStateActions.increment());
-      expect(modifiedState.get('counter')).to.not.equal(initialState.get('counter'));
-
-      // reset to original and verify it === initial state
-      const [resetState] = dispatch(modifiedState, CounterStateActions.reset());
-      expect(resetState.get('counter')).to.equal(initialState.get('counter'));
     });
   });
 
   // Example of how to test side effects returned from reducers
   describe('random', () => {
 
-    const [nextState, effects] = dispatch(initialState, CounterStateActions.random());
+    const [nextState, effects] = dispatch(initialState, MessageListStateActions.random());
 
     it('should update loading bit', () => {
       expect(nextState.getIn(['counter', 'loading'])).to.equal(true);
@@ -45,7 +33,7 @@ describe('CounterState', () => {
 
     it('should trigger a requestRandomNumber side effect', () => {
       expect(effects).to.eql(
-        Effects.promise(CounterStateActions.requestRandomNumber)
+        Effects.promise(MessageListStateActions.requestRandomNumber)
       );
     });
   });
@@ -60,7 +48,7 @@ describe('CounterState', () => {
     afterEach(() => sandbox.restore());
 
     it('should generate a random number and dispatch it', async () => {
-      const action = await CounterStateActions.requestRandomNumber();
+      const action = await MessageListStateActions.requestRandomNumber();
       expect(action.payload).to.be.a('number');
 
       const [nextState] = dispatch(initialState, action);

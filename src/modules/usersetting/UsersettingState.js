@@ -1,20 +1,21 @@
-import {Map} from 'immutable';
 import {loop, Effects} from 'redux-loop';
 import {generateRandomNumber} from '../../services/randomNumberService';
 
 // Initial state
-const initialState = Map({
-  value: 0,
-  loading: false
-});
+const initialState = 'N/A';
 
 // Actions
+const SETUSERNAME = 'UsersettingState/SETUSERNAME';
 const INCREMENT = 'CounterState/INCREMENT';
 const RESET = 'CounterState/RESET';
 const RANDOM_REQUEST = 'CounterState/RANDOM_REQUEST';
 const RANDOM_RESPONSE = 'CounterState/RANDOM_RESPONSE';
 
 // Action creators
+export function setusername() {
+  return {type: SETUSERNAME};
+}
+
 export function increment() {
   return {type: INCREMENT};
 }
@@ -44,6 +45,10 @@ export default function CounterStateReducer(state = initialState, action = {}) {
 
     case RESET:
       return initialState;
+
+    case SETUSERNAME:
+      return state
+        .set('initialState', )
 
     case RANDOM_REQUEST:
       return loop(
