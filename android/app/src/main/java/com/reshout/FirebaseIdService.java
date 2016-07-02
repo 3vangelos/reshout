@@ -7,7 +7,6 @@ import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -15,10 +14,17 @@ import android.util.Log;
 import java.io.IOException;
 
 import polanski.option.Option;
+import polanski.option.function.Func1;
 
 public class FirebaseIdService extends FirebaseInstanceIdService {
 
     private static final String TAG = FirebaseIdService.class.getSimpleName();
+
+    private static final String REGISTRATION_REQUEST
+            = "https://forces-assemble.herokuapp.com/api/v1/users/tomek_is_awesome/notification-token";
+
+    private static final String CHANNEL_REGISTRATION_REQUEST
+            = "https://forces-assemble.herokuapp.com/api/v1/channels/tomek_is_awesome_channel/subscribers";
 
     @NonNull
     private final OkHttpClient mClient = new OkHttpClient();
@@ -36,44 +42,41 @@ public class FirebaseIdService extends FirebaseInstanceIdService {
 
     }
 
-    private void initialize(final String refreshedToken) {
-        String url
-                = "https://forces-assemble.herokuapp.com/api/v1/users/tomek_is_awesome/notification-token";
-        String json = "{ \"notification-token\": \"" + refreshedToken + "\" }";
-
-        String subscribeUrl
-                = "https://forces-assemble.herokuapp.com/api/v1/channels/tomek_is_awesome_channel/subscribers";
-
-        String subscribeJson = "{ \"user-id\": \"tomek_is_awesome\" }";
+    private void initialize(@NonNull final String refreshedToken) {
         try {
-            put(url, json);
-            post(subscribeUrl, subscribeJson);
+            put(REGISTRATION_REQUEST, getNotificationRequestBody(refreshedToken));
+            post(CHANNEL_REGISTRATION_REQUEST, getChannelRequestBody());
+            Log.d(TAG, "Registration successful");
         } catch (IOException e) {
             Log.e(TAG, "Error " + e);
         }
     }
 
-    private String put(String url, String json) throws IOException {
-        final MediaType JSON
-                = MediaType.parse("application/json; charset=utf-8");
-        RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
-                .url(url)
-                .put(body)
-                .build();
-        Response response = mClient.newCall(request).execute();
-        return response.body().string();
+    @NonNull
+    private static String getNotificationRequestBody(@NonNull String refreshedToken) {
+        return "{ \"notification-token\": \"" + refreshedToken + "\" }";
     }
 
-    private String post(String url, String json) throws IOException {
-        final MediaType JSON
-                = MediaType.parse("application/json; charset=utf-8");
-        RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
-        Response response = mClient.newCall(request).execute();
-        return response.body().string();
+    @NonNull
+    private static String getChannelRequestBody() {
+        return "{ \"user-id\": \"tomek_is_awesome\" }";
     }
+
+    private void put(String url, String json) throws IOException {
+        request(url, json, builder -> builder::put);
+    }
+
+    private void post(String url, String json) throws IOException {
+        request(url, json, builder -> builder::post);
+    }
+
+    private void request(String url, String json,
+                         Func1<Request.Builder, Func1<RequestBody, Request.Builder>> addFields)
+            throws IOException {
+        final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = addFields.call(new Request.Builder()).call(body).url(url).build();
+        mClient.newCall(request).execute();
+    }
+
 }
